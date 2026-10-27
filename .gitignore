@@ -1,0 +1,44 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+cloudflared*.json
+cert.pem
+
+# SQLite and event logs (personal data)
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.jsonl
+*.log
+
+# Local archives and backups
+backups/
+backup*/
+*_backup*/
+*backup*.db
+server_backup*.py
+labhub_backup*.db
+static_backup*/
+templates_backup*/
+*.zip
+
+# OS / editor / Xcode local state
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+ios/**/xcuserdata/
+ios/**/*.xcuserstate

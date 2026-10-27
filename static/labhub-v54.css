@@ -1,0 +1,54 @@
+/* LabHub v5.4: compact reservations and clearer meeting outcomes. */
+.lab-v52 #booking,.lab-v52 #meetings{min-width:0;}
+.lab-v52 .v54-compact-panel{padding:20px 22px;}
+.lab-v52 .v54-head{margin:0 0 10px;}
+.lab-v52 .v54-head h2{font-size:18px;}
+.lab-v52 .v54-muted-chip,.lab-v52 .v54-counter{font-size:11px;color:#5e806c;background:#edf6ef;border-radius:20px;padding:5px 10px;white-space:nowrap;}
+.lab-v52 .v54-list-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:15px 0 10px;}
+.lab-v52 .v54-list-heading h3{font-size:15px;margin:0;font-weight:800;color:#223d2c;}
+.lab-v52 .v54-add-details,.lab-v52 .v54-create-meeting{margin:12px 0 16px;padding:0;background:#fff;border:1px solid #dae8df;border-radius:14px;overflow:hidden;}
+.lab-v52 .v54-add-details>summary,.lab-v52 .v54-create-meeting>summary{display:flex;align-items:center;min-height:48px;padding:11px 15px;background:#edf7f0;color:#176744;font-size:14px;font-weight:800;list-style:none;cursor:pointer;}
+.lab-v52 .v54-add-details>summary::-webkit-details-marker,.lab-v52 .v54-create-meeting>summary::-webkit-details-marker{display:none;}
+.lab-v52 .v54-add-details>summary::after,.lab-v52 .v54-create-meeting>summary::after{content:'⌄';margin-left:auto;font-size:21px;font-weight:500;line-height:1;}
+.lab-v52 .v54-add-details[open]>summary::after,.lab-v52 .v54-create-meeting[open]>summary::after{transform:rotate(180deg);}
+.lab-v52 .v54-add-details>form,.lab-v52 .v54-create-meeting>form{padding:0 14px 13px;margin:13px 0 0;}
+.lab-v52 .v54-small-note{color:#779281;font-size:12px;padding:9px 14px 0;margin:0;}
+.lab-v52 #booking .v54-booking-row,.lab-v52 #booking .v54-equipment-row{padding:12px 14px;border-radius:13px;background:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:0;}
+.lab-v52 .v54-booking-main{min-width:0;flex:1;}
+.lab-v52 .v54-booking-primary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.lab-v52 .v54-booking-primary strong{font-size:14px;color:#254632;line-height:1.4;}
+.lab-v52 .v54-booking-time{font-size:13px;font-weight:750;color:#247252;margin-top:3px;line-height:1.45;}
+.lab-v52 .v54-booking-owner{font-size:11px;color:#748c7a;margin-top:3px;}
+.lab-v52 .v54-item-type{font-size:10px;color:#718a78;background:#f0f5f1;border-radius:6px;padding:2px 6px;}
+.lab-v52 #booking .v54-cancel{flex:none;padding:8px 11px;font-size:12px;min-height:40px;margin:0;}
+.lab-v52 #booking .v54-secondary-details,.lab-v52 #meetings .v54-secondary-details{background:#fff;padding:11px 13px;margin:13px 0 0;}
+.lab-v52 #booking .v54-secondary-details>summary,.lab-v52 #meetings .v54-secondary-details>summary{font-size:12px;min-height:30px;display:flex;align-items:center;}
+.lab-v52 #booking .v54-secondary-details .v5-items{margin-top:12px;}
+.lab-v52 #booking #equipment-admin{margin-top:12px;}
+.lab-v52 #meetings .v54-meeting-list{gap:9px;}
+.lab-v52 #meetings .v54-poll{background:#fff;padding:14px;border-radius:14px;}
+.lab-v52 #meetings .v54-poll.v54-poll-done{border-color:#cce2d4;}
+.lab-v52 #meetings .v5-poll-head strong{font-size:15px;overflow-wrap:anywhere;}
+.lab-v52 #meetings .v54-confirmed-result{margin:11px 0 3px;padding:11px 12px;background:#eff8f2;border-radius:12px;display:flex;flex-direction:column;gap:3px;}
+.lab-v52 #meetings .v54-confirmed-result small{font-size:10px;font-weight:800;color:#56846c;}
+.lab-v52 #meetings .v54-confirmed-result strong{font-size:17px;line-height:1.45;color:#165c3e;font-weight:850;}
+.lab-v52 #meetings .v54-confirmed-result span{font-size:12px;color:#587768;}
+.lab-v52 #meetings .v54-poll-meta{color:#749181;font-size:11px;margin:5px 0!important;}
+.lab-v52 #meetings .v54-poll-description{font-size:12px;color:#526f5e;margin:6px 0!important;}
+.lab-v52 #meetings .v54-vote-details{margin-top:10px;padding-top:7px;border-top:1px solid #e6eee8;}
+.lab-v52 #meetings .v54-vote-details summary{font-size:11px;font-weight:650;color:#557765;cursor:pointer;}
+.lab-v52 #meetings .v54-vote-row{padding:6px 0;font-size:11px;color:#688473;border-bottom:1px solid #edf1ed;}
+.lab-v52 #meetings .v5-poll-vote{gap:7px;margin-top:9px;}
+.lab-v52 #meetings .v5-slot{padding:8px 10px;min-height:45px;font-size:12px;}
+.lab-v52 #meetings .v5-slot strong{font-size:11px;white-space:nowrap;color:#3b7154;}
+.lab-v52 #meetings .v54-vote-button{margin-top:5px;align-self:stretch;font-size:12px;}
+.lab-v52 #meetings .v5-finalize{border-top:1px solid #e8eee8;padding-top:11px;margin-top:11px;}
+.lab-v52 #meetings .v53-opt-in{margin:10px 0 0;padding:9px;border:0;}
+.lab-v52 #meetings .v53-opt-in label{font-size:12px;}
+@media(max-width:760px){
+ .lab-v52 #booking,.lab-v52 #meetings{padding:16px;}
+ .lab-v52 #booking .v54-booking-row{gap:8px;}
+ .lab-v52 #meetings .v54-confirmed-result strong{font-size:16px;}
+ .lab-v52 #book-form{grid-template-columns:minmax(0,1fr);}
+ .lab-v52 #booking .v54-add-details>form,.lab-v52 #meetings .v54-create-meeting>form{padding:0 12px 12px;}
+}

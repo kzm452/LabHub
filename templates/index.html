@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="LabHub — 研究室の在室状況、活動状態、設備予約、予定をひとつに。">
+  <title>LabHub | 研究室のいま</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css', v='54') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='labhub-b.css', v='54') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='labhub-v54.css', v='54') }}">
+  <script>window.LABHUB_LIFF_ID = {{ liff_id|tojson }};</script>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="{{ url_for('static', filename='app.js', v='54') }}" defer></script>
+  <script src="{{ url_for('static', filename='features.js', v='54') }}" defer></script>
+  <script src="{{ url_for('static', filename='ui-b.js', v='54') }}" defer></script>
+</head>
+<body class="lab-v52">
+<div class="lab-app">
+  <aside class="lab-rail" aria-label="メインナビゲーション">
+    <a class="lab-brand" href="#home" data-brand-home><span class="lab-brand-logo">L.</span><span><strong>LabHub</strong><small>RESEARCH WORKSPACE</small></span></a>
+    <div class="lab-rail-label">WORKSPACE</div>
+    <nav class="lab-nav-desktop" aria-label="ページ">
+      <button class="lab-nav-link is-active" type="button" data-lab-nav="home" aria-current="page"><span class="lab-nav-ico" aria-hidden="true">⌂</span>ホーム</button>
+      <button class="lab-nav-link" type="button" data-lab-nav="members"><span class="lab-nav-ico" aria-hidden="true">♙</span>メンバー</button>
+      <button class="lab-nav-link" type="button" data-lab-nav="booking"><span class="lab-nav-ico" aria-hidden="true">▦</span>予約</button>
+      <button class="lab-nav-link" type="button" data-lab-nav="schedule"><span class="lab-nav-ico" aria-hidden="true">▤</span>予定</button>
+    </nav>
+    <p class="lab-rail-foot">LABHUB / v5.4<br>Lab communication made simple.</p>
+  </aside>
+  <div class="lab-main">
+    <header class="lab-top">
+      <div><span class="lab-top-eyebrow">LABHUB / WORKSPACE</span><h1 id="lab-page-title">おはようございます <span aria-hidden="true">☀</span></h1><p class="lab-top-subtitle">研究室のいまを、ひと目で。</p></div>
+      <div class="lab-user" aria-label="ログインユーザー"><span id="lab-user-name" class="lab-user-name">LabHub</span><span class="lab-user-avatar" id="lab-user-avatar" aria-hidden="true">LH</span><button type="button" id="mobile-admin" class="lab-admin-floating" aria-label="管理者メニュー" title="管理者メニュー">⚙</button></div>
+    </header>
+    <div class="auth-notice" hidden="" id="auth-notice">
+<strong id="auth-title">LINEログインを確認しています</strong>
+<p id="auth-description">研究室の在室情報は、承認されたメンバーにのみ公開されます。</p>
+<button class="btn btn-dark" hidden="" id="line-login" type="button">LINEでログインする →</button>
+<button class="btn btn-dark" id="auth-admin-open" style="margin-top:12px" type="button">管理者として承認する ↗</button>
+</div>
+    <main id="protected-dashboard" hidden>
+      <section id="home" class="lab-screen is-active" data-lab-screen="home" aria-label="ホーム">
+        <article class="lab-overview">
+          <div class="lab-overview-top">
+            <div class="lab-overview-eyebrow"><span class="lab-live-dot"></span>研究室のいま</div>
+            <div class="lab-data-source">iBeacon・手動記録</div>
+            <div class="lab-headline-count"><strong id="present-count">—</strong><span>人が在室中 <span class="lab-total">/ <span id="member-count">—</span>人</span></span></div>
+            <div class="lab-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="在室率"><span id="lab-progress-fill"></span></div>
+            <div class="lab-overview-update"><span id="sync-label">読み込み中</span><span aria-hidden="true">·</span><span id="today-label">在室状況を取得中</span></div>
+          </div>
+          <div class="lab-overview-bottom">
+            <div class="lab-row-heading"><h2><span class="lab-green-icon">♙</span>いま研究室にいる人</h2><span id="lab-present-count-note">— MEMBERS</span></div>
+            <div class="lab-preview-people" id="lab-present-preview" aria-live="polite"><p class="lab-preview-empty">メンバーの情報を確認しています…</p></div>
+            <button class="lab-subtle-link" type="button" data-lab-go="members"><span id="lab-all-members-label">在室メンバーをすべて見る</span><span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+        <div class="lab-home-layout">
+          <div class="lab-home-primary">
+            <section class="panel activity-panel" hidden="" id="self-activity-panel">
+<span class="section-label">MY ACTIVITY</span><div class="lab-me-heading"><h2>自分の状態</h2><span id="lab-my-position" class="lab-my-position">状態を確認中</span></div>
+<p class="activity-note">iBeaconの「在室・不在・不明」とは別に設定します。授業中・食事中などを本人が更新できます。</p>
+<div class="activity-current-line">
+<span class="activity-badge" id="self-activity-current">未設定</span>
+<small id="self-activity-expiry">活動状態は未設定です</small>
+</div>
+<div aria-label="自分の活動状態" class="activity-options" id="activity-options" role="group">
+<button data-activity="研究中" type="button">💻 研究中</button>
+<button data-activity="食事中" type="button">🍱 食事中</button>
+<button data-activity="授業中" type="button">🎓 授業中</button>
+<button data-activity="外出中" type="button">🚶 外出中</button>
+<button data-activity="会議中" type="button">👥 会議中</button>
+<button data-activity="帰宅" type="button">🏠 帰宅</button>
+<button data-activity="対応可能" type="button">💬 対応可能</button>
+<button data-activity="集中中" type="button">🔕 集中中</button>
+</div>
+<label class="activity-expiry-control" for="activity-ttl">自動解除までの時間
+                <select id="activity-ttl">
+<option value="30">30分</option>
+<option selected="" value="60">1時間</option>
+<option value="120">2時間</option>
+<option value="240">4時間</option>
+<option value="480">8時間</option>
+<option value="0">手動で解除するまで</option>
+</select>
+</label>
+<button class="activity-reset" id="activity-reset" type="button">活動状態を未設定に戻す</button>
+<details class="activity-history-details"><summary>自分の変更履歴（直近10件）</summary><div id="activity-history">読み込み中…</div></details>
+</section>
+            <section class="panel self-panel" hidden="" id="self-presence-panel">
+<span class="section-label">MY PRESENCE</span><h2>自分の入退室</h2>
+<p class="self-help">LINEログイン済みの本人だけが操作できます。</p>
+<p class="self-current">現在の表示：<strong id="self-presence-status">確認中</strong></p>
+<div class="self-buttons">
+<button class="self-button self-button-in" id="self-checkin" type="button">入室する</button>
+<button class="self-button self-button-out" id="self-checkout" type="button">退室する</button>
+</div>
+</section>
+          </div>
+          <div class="lab-home-aside">
+            <section class="lab-card lab-upnext" aria-labelledby="lab-today-heading">
+              <div class="lab-card-head"><h2 id="lab-today-heading">今日の予定</h2><button class="lab-card-link" type="button" data-lab-go="schedule">すべて見る →</button></div>
+              <div id="lab-home-events" class="lab-home-list"><p class="lab-hint">予定を読み込み中…</p></div>
+            </section>
+            <section class="lab-card lab-upnext" aria-labelledby="lab-equipment-heading">
+              <div class="lab-card-head"><h2 id="lab-equipment-heading">近日の設備予約</h2><button class="lab-card-link" type="button" data-lab-go="booking">予約を見る →</button></div>
+              <div id="lab-home-bookings" class="lab-home-list"><p class="lab-hint">予約を読み込み中…</p></div>
+            </section>
+          </div>
+        </div>
+      </section>
+      <section id="members" class="lab-screen" data-lab-screen="members" aria-label="メンバー一覧" hidden>
+        <div class="lab-screen-heading"><div><span class="lab-screen-kicker">MEMBERS</span><h2>メンバーの在室状況</h2><p>位置状態と活動状態を一緒に確認できます。</p></div></div>
+        <div class="lab-members-layout">
+          <div><section class="panel member-panel">
+<div class="panel-head">
+<div><span class="section-label">MEMBERS</span><h2>メンバーの在室状況</h2></div>
+<span class="soft-label" id="member-count-label">0 members</span>
+</div>
+<div aria-label="在室フィルター" class="tab-row" role="tablist">
+<button aria-selected="true" class="filter-tab is-active" data-filter="all" type="button">すべて</button>
+<button aria-selected="false" class="filter-tab" data-filter="present" type="button">在室中</button>
+<button aria-selected="false" class="filter-tab" data-filter="away" type="button">不在</button>
+<button aria-selected="false" class="filter-tab" data-filter="unknown" type="button">不明</button>
+</div>
+<div aria-live="polite" class="member-list" id="member-list">
+<div class="empty-state"><span class="empty-icon">◌</span><strong>データを読み込んでいます</strong><p>少々お待ちください。</p></div>
+</div>
+<div class="panel-footer"><span class="info-dot">i</span><span id="presence-note">最後の入室検知から一定時間を在室として扱います。退室の自動検知ではありません。</span></div>
+</section></div>
+          <div class="lab-members-aside"><section class="panel v5-panel" id="arrival-alerts">
+<div class="panel-head"><div><span class="section-label">LINE ALERTS</span><h2>メンバーが来たら通知</h2></div><span class="soft-label">本人同意制</span></div>
+<p class="v5-description">「○○さんが研究室に来たらLINEで知らせる」機能です。通知を受け取る側も、通知される側も研究室の承認済みメンバーに限定します。</p>
+<label class="v5-consent"><input id="arrival-sharing" type="checkbox"/> <span>自分の入室を、通知を希望する研究室メンバーへ知らせることを許可する</span></label>
+<div class="v5-items" id="arrival-watch-list"></div>
+<p class="v5-fineprint">本人が許可していない場合は通知登録できません。通知を許可してもLINEでの位置追跡や詳細な行動履歴の公開は行いません。</p>
+</section> <section class="panel action-panel">
+<span class="section-label">QUICK ACTION</span><h2>クイック操作</h2><p>管理者として認証すると、入退室やコミュニケーション状態を手動で更新できます。</p>
+<button class="btn btn-dark" id="admin-open" type="button">管理者として操作する <span>↗</span></button>
+<p class="admin-status" id="admin-status">現在は閲覧モードです</p>
+</section></div>
+        </div>
+      </section>
+      <section id="booking-screen" class="lab-screen" data-lab-screen="booking" aria-label="設備予約" hidden>
+        <div class="lab-screen-heading"><div><span class="lab-screen-kicker">RESERVATIONS</span><h2>設備予約</h2><p>研究設備や会議室の空き時間を探して予約します。</p></div></div>
+        <p id="v5-sections-message" class="v5-fineprint" role="status">読み込み中…</p>
+        <div id="workspace" class="lab-workspace">
+          <section class="panel v5-panel v54-compact-panel" id="booking">
+            <div class="panel-head v54-head"><div><span class="section-label">RESERVE</span><h2>設備を予約する</h2></div><span class="v54-muted-chip">重複予約を防止</span></div>
+            <details id="v54-book-create" class="v5-details v54-add-details"><summary>＋ 新しい予約を作成</summary>
+              <p class="v54-small-note">設備と日時を選ぶだけで予約できます。</p>
+              <form class="v5-form" id="book-form">
+<label>設備<select id="book-equipment" required=""></select></label>
+<label>利用開始<input id="book-start" required="" type="datetime-local"/></label>
+<label>利用終了<input id="book-end" required="" type="datetime-local"/></label>
+<label class="wide">用途（任意）<input id="book-purpose" maxlength="200" placeholder="例：GPU実験"/></label>
+<button class="v5-primary wide" type="submit">予約する</button>
+</form>
+            </details>
+            <div class="v54-list-heading"><h3>今後の予約</h3><span id="v54-reservation-count" class="v54-counter">— 件</span></div>
+            <div class="v5-items" id="booking-list"></div>
+            <details class="v5-details v54-secondary-details"><summary>設備一覧を見る</summary><div class="v5-items" id="equipment-list"></div></details>
+            <div class="v5-items" id="booking-history"></div>
+            <details class="v5-details" hidden="" id="equipment-admin"><summary>管理者：設備を追加</summary>
+<form class="v5-form" id="equipment-form">
+<label>種類<select id="eq-kind"><option value="equipment">研究設備・サーバー</option><option value="room">会議室・ミーティングスペース</option></select></label>
+<label>設備名<input id="eq-name" maxlength="80" placeholder="例：共用GPUサーバー" required=""/></label>
+<label>設置場所<input id="eq-location" maxlength="100" placeholder="例：研究室A"/></label>
+<label class="wide">説明<input id="eq-description" maxlength="300" placeholder="例：1回につき2時間目安"/></label>
+<button class="v5-primary wide" type="submit">設備を登録する</button>
+</form>
+</details>
+          </section>
+        </div>
+      </section>
+      <section id="schedule" class="lab-screen" data-lab-screen="schedule" aria-label="研究室の予定" hidden>
+        <div class="lab-screen-heading"><div><span class="lab-screen-kicker">SCHEDULE</span><h2>研究室の予定</h2><p>今日の予定とミーティングの日程調整。</p></div></div>
+        <div class="lab-schedule-layout"><section class="panel v5-panel" id="today-events">
+<div class="panel-head"><div><span class="section-label">TODAY</span><h2>今日の研究室予定</h2></div><span class="soft-label">日本時間</span></div>
+<div class="v5-items" id="today-event-list"></div>
+<details class="v5-details" hidden="" id="events-admin"><summary>管理者：イベントを追加</summary>
+<form class="v5-form" id="event-form">
+<label class="wide">イベント名<input id="event-title" maxlength="100" placeholder="例：輪講・歓迎会" required=""/></label>
+<label>開始<input id="event-start" required="" type="datetime-local"/></label>
+<label>終了<input id="event-end" required="" type="datetime-local"/></label>
+<label class="wide">場所<input id="event-location" maxlength="100" placeholder="研究室・オンライン等"/></label>
+<button class="v5-primary wide" type="submit">イベントを登録</button>
+</form>
+</details>
+</section> <section class="panel v5-panel v54-compact-panel" id="meetings">
+<div class="panel-head v54-head"><div><span class="section-label">SCHEDULING</span><h2>ミーティング日程調整</h2></div></div>
+<div class="v54-list-heading"><h3>日程調整一覧</h3><span class="v54-muted-chip">回答・確定状況</span></div>
+<div class="v5-items v54-meeting-list" id="poll-list"></div>
+<details class="v5-details v54-create-meeting" id="v54-meeting-create"><summary>新しい日程調整を作成</summary>
+<form class="v5-form" id="poll-form">
+<label class="wide">議題<input id="poll-title" maxlength="100" placeholder="例：研究進捗の打ち合わせ" required></label>
+<label class="wide">説明（任意）<input id="poll-description" maxlength="300" placeholder="例：来月の進捗共有"></label>
+<label class="wide">会議室（任意）<select id="poll-equipment"><option value="">指定しない</option></select></label>
+<label>回答期限<input id="poll-deadline" required type="datetime-local"></label>
+<label>会議時間<select id="poll-duration"><option value="30">30分</option><option value="60" selected>60分</option><option value="90">90分</option><option value="120">120分</option></select></label>
+<div class="wide v53-suggestion-panel">
+  <div class="v53-suggestion-title"><strong>✨ 候補日時を見つける</strong><span>まずはここから</span></div>
+  <p>希望の開始日を選ぶと、7日間の空き時間から候補を提案します。</p>
+  <div class="v53-inline-row"><label>希望開始日<input id="poll-first-day" type="date"></label><button class="v5-primary" id="poll-suggest" type="button">おすすめを探す</button></div>
+  <p id="poll-suggest-note" class="v53-suggest-note" role="status">推薦には本人の同意を得た入退室履歴だけを匿名集計します。履歴不足の場合は空き日時を表示します。</p>
+  <div class="v53-suggest-results" id="poll-suggestions"></div>
+</div>
+<div class="wide v53-candidate-section">
+  <div class="v53-suggestion-title"><strong>候補として選択した日時</strong><span id="poll-slot-counter">0 / 12</span></div>
+  <div id="poll-slot-inputs" class="v53-selected-candidates"><p class="v5-empty">おすすめから追加するか、下の入力で候補を追加してください。</p></div>
+  <div class="v53-manual"><label>自分で日時を追加<input id="poll-manual-start" type="datetime-local"></label><button type="button" class="v5-muted" id="add-slot">＋ 候補に追加</button></div>
+  <p class="v5-fineprint">2〜12件の候補を選んで作成します。メンバーの実際の参加可否は投票で確認してください。</p>
+</div>
+<button class="v5-primary wide" type="submit">この候補で日程調整を作成</button>
+</form>
+</details>
+<details class="v5-details v54-secondary-details v54-privacy"><summary>在室履歴を使った候補推薦の設定</summary><div class="v53-opt-in"><label><input id="presence-recommend-opt-in" type="checkbox"><span>自分の入退室履歴を、会議の時間帯推薦のために匿名集計することを許可する</span></label><p>初期設定はオフ。ほかの人に個人の履歴は公開されず、いつでもオフにできます。出欠の確約には使用しません。</p></div></details>
+</section></div>
+      </section>
+      <div class="lab-hidden-compat" aria-hidden="true"><span id="presence-rate">—</span></div>
+      <p class="lab-disclaimer">在室状態はiBeacon等による推定を含みます。「不明」は退室の確定を意味しません。メンバーの詳細情報は承認済みユーザーのみが閲覧できます。</p>
+    </main>
+    <footer class="lab-footer"><strong>LabHub.</strong><span>v5.4 · UI改善</span></footer>
+  </div>
+</div>
+<nav class="lab-nav-mobile" aria-label="モバイルナビゲーション">
+  <button type="button" data-lab-nav="home" class="is-active" aria-current="page"><span aria-hidden="true">⌂</span>ホーム</button>
+  <button type="button" data-lab-nav="members"><span aria-hidden="true">♙</span>メンバー</button>
+  <button type="button" data-lab-nav="booking"><span aria-hidden="true">▦</span>予約</button>
+  <button type="button" data-lab-nav="schedule"><span aria-hidden="true">▤</span>予定</button>
+</nav>
+<div id="v5-message" hidden role="status"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<dialog class="admin-dialog" id="admin-dialog">
+<form class="dialog-content" id="admin-form" method="dialog">
+<div class="dialog-top"><span class="section-label">ADMIN ACCESS</span><button aria-label="閉じる" class="close-btn" id="close-dialog" type="button">×</button></div>
+<h2 id="dialog-title">管理者としてログイン</h2>
+<p>テスト版の管理者キーを入力してください。キーはブラウザのこのタブ内だけで保持されます。</p>
+<label class="field-label" for="admin-key">管理者キー</label>
+<input autocomplete="off" id="admin-key" placeholder="LABHUB_ADMIN_KEY" required="" type="password"/>
+<p class="dialog-error" id="dialog-error" role="alert"></p>
+<button class="btn btn-dark" type="submit">ログインする <span>→</span></button>
+</form>
+</dialog>
+</body>
+</html>

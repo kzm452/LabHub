@@ -1,0 +1,56 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 56;
+  objects = {
+/* Begin PBXBuildFile section */
+    AABBCCDD000000000000000B /* LabHubBeaconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCCDD0000000000000006 /* LabHubBeaconApp.swift */; };
+    AABBCCDD000000000000000C /* BeaconMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCCDD0000000000000007 /* BeaconMonitor.swift */; };
+    AABBCCDD000000000000000D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCCDD0000000000000008 /* ContentView.swift */; };
+    AABBCCDD0000000000000021 /* EventSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCCDD0000000000000023 /* EventSender.swift */; };
+    AABBCCDD0000000000000022 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCCDD0000000000000024 /* KeychainStore.swift */; };
+    AABBCCDD000000000000000F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AABBCCDD000000000000000A /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+/* Begin PBXFileReference section */
+    AABBCCDD0000000000000005 /* LabHubBeacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabHubBeacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    AABBCCDD0000000000000006 /* LabHubBeaconApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabHubBeaconApp.swift; sourceTree = "<group>"; };
+    AABBCCDD0000000000000007 /* BeaconMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconMonitor.swift; sourceTree = "<group>"; };
+    AABBCCDD0000000000000008 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+    AABBCCDD0000000000000023 /* EventSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSender.swift; sourceTree = "<group>"; };
+    AABBCCDD0000000000000024 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+    AABBCCDD000000000000000A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+/* Begin PBXFrameworksBuildPhase section */
+    AABBCCDD0000000000000012 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+/* Begin PBXGroup section */
+    AABBCCDD0000000000000002 = {isa = PBXGroup; children = (AABBCCDD0000000000000003 /* LabHubBeacon */, AABBCCDD0000000000000004 /* Products */); sourceTree = "<group>"; };
+    AABBCCDD0000000000000003 /* LabHubBeacon */ = {isa = PBXGroup; children = (AABBCCDD0000000000000006 /* LabHubBeaconApp.swift */, AABBCCDD0000000000000007 /* BeaconMonitor.swift */, AABBCCDD0000000000000008 /* ContentView.swift */, AABBCCDD0000000000000023 /* EventSender.swift */, AABBCCDD0000000000000024 /* KeychainStore.swift */, AABBCCDD000000000000000A /* Assets.xcassets */); path = LabHubBeacon; sourceTree = "<group>"; };
+    AABBCCDD0000000000000004 /* Products */ = {isa = PBXGroup; children = (AABBCCDD0000000000000005 /* LabHubBeacon.app */); name = Products; sourceTree = "<group>"; };
+/* End PBXGroup section */
+/* Begin PBXNativeTarget section */
+    AABBCCDD0000000000000013 /* LabHubBeacon */ = {isa = PBXNativeTarget; buildConfigurationList = AABBCCDD0000000000000015 /* Build configuration list for PBXNativeTarget "LabHubBeacon" */; buildPhases = (AABBCCDD0000000000000010 /* Sources */, AABBCCDD0000000000000012 /* Frameworks */, AABBCCDD0000000000000011 /* Resources */); buildRules = (); dependencies = (); name = LabHubBeacon; productName = LabHubBeacon; productReference = AABBCCDD0000000000000005 /* LabHubBeacon.app */; productType = "com.apple.product-type.application"; };
+/* End PBXNativeTarget section */
+/* Begin PBXProject section */
+    AABBCCDD0000000000000001 /* Project object */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 2700; TargetAttributes = {AABBCCDD0000000000000013 = {CreatedOnToolsVersion = 27.0; }; }; }; buildConfigurationList = AABBCCDD0000000000000014 /* Build configuration list for PBXProject "LabHubBeacon" */; compatibilityVersion = "Xcode 14.0"; developmentRegion = ja; hasScannedForEncodings = 0; knownRegions = (ja, en, Base); mainGroup = AABBCCDD0000000000000002; productRefGroup = AABBCCDD0000000000000004; projectDirPath = ""; projectRoot = ""; targets = (AABBCCDD0000000000000013 /* LabHubBeacon */); };
+/* End PBXProject section */
+/* Begin PBXResourcesBuildPhase section */
+    AABBCCDD0000000000000011 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (AABBCCDD000000000000000F /* Assets.xcassets in Resources */); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+/* Begin PBXSourcesBuildPhase section */
+    AABBCCDD0000000000000010 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (AABBCCDD000000000000000B /* LabHubBeaconApp.swift in Sources */, AABBCCDD000000000000000C /* BeaconMonitor.swift in Sources */, AABBCCDD000000000000000D /* ContentView.swift in Sources */, AABBCCDD0000000000000021 /* EventSender.swift in Sources */, AABBCCDD0000000000000022 /* KeychainStore.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+/* Begin XCBuildConfiguration section */
+    AABBCCDD0000000000000016 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; DEBUG_INFORMATION_FORMAT = dwarf; ENABLE_TESTABILITY = YES; GCC_OPTIMIZATION_LEVEL = 0; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = iphoneos; SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; }; name = Debug; };
+    AABBCCDD0000000000000017 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = iphoneos; SWIFT_COMPILATION_MODE = wholemodule; }; name = Release; };
+    AABBCCDD0000000000000018 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "研究室への入退室をiBeaconで自動検知するために使用します。"; INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "研究室のiBeaconを検知するために位置情報の許可が必要です。"; INFOPLIST_KEY_UILaunchScreen_Generation = YES; INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait"; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks"); MARKETING_VERSION = 1.1; PRODUCT_BUNDLE_IDENTIFIER = com.example.labhubbeacon; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; }; name = Debug; };
+    AABBCCDD0000000000000019 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "研究室への入退室をiBeaconで自動検知するために使用します。"; INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "研究室のiBeaconを検知するために位置情報の許可が必要です。"; INFOPLIST_KEY_UILaunchScreen_Generation = YES; INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait"; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks"); MARKETING_VERSION = 1.1; PRODUCT_BUNDLE_IDENTIFIER = com.example.labhubbeacon; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; }; name = Release; };
+/* End XCBuildConfiguration section */
+/* Begin XCConfigurationList section */
+    AABBCCDD0000000000000014 /* Build configuration list for PBXProject "LabHubBeacon" */ = {isa = XCConfigurationList; buildConfigurations = (AABBCCDD0000000000000016 /* Debug */, AABBCCDD0000000000000017 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    AABBCCDD0000000000000015 /* Build configuration list for PBXNativeTarget "LabHubBeacon" */ = {isa = XCConfigurationList; buildConfigurations = (AABBCCDD0000000000000018 /* Debug */, AABBCCDD0000000000000019 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+  };
+  rootObject = AABBCCDD0000000000000001 /* Project object */;
+}

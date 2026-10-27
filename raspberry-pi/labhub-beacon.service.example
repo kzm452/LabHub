@@ -1,0 +1,16 @@
+[Unit]
+Description=LabHub BLE Beacon Service
+After=bluetooth.service
+Requires=bluetooth.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/beacon/line-beacon
+# Change both the path and HWID to match your Raspberry Pi.
+ExecStart=/usr/bin/python3 /home/beacon/line-beacon/line_beacon_labhub_test.py --hwid YOUR_10_HEX_HWID
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
